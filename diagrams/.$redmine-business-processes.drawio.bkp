@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net" agent="Cursor" version="24.0.0">
+  <diagram id="business-processes" name="Procesos de negocio">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Redmine - Procesos de negocio y tablas" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="320" y="20" width="400" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="sg-portfolio" value="Portafolio" style="swimlane;startSize=30;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="160" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="P" value="projects" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="sg-portfolio">
+          <mxGeometry x="20" y="40" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="sg-planning" value="Planificacion" style="swimlane;startSize=30;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="240" y="80" width="160" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="V" value="versions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="sg-planning">
+          <mxGeometry x="20" y="40" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="sg-execution" value="Ejecucion" style="swimlane;startSize=30;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="440" y="80" width="200" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="I" value="issues" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="sg-execution">
+          <mxGeometry x="40" y="40" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="S" value="issue_statuses" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="sg-execution">
+          <mxGeometry x="40" y="90" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="T" value="time_entries" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="sg-execution">
+          <mxGeometry x="40" y="140" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="sg-team" value="Equipo" style="swimlane;startSize=30;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="220" width="200" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="M" value="members" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="sg-team">
+          <mxGeometry x="40" y="40" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="U" value="users" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="sg-team">
+          <mxGeometry x="40" y="90" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="sg-audit" value="Auditoria" style="swimlane;startSize=30;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="680" y="80" width="200" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="J" value="journals" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="sg-audit">
+          <mxGeometry x="40" y="40" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="JD" value="journal_details" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="sg-audit">
+          <mxGeometry x="40" y="90" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;" edge="1" parent="1" source="P" target="V">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;" edge="1" parent="1" source="P" target="I">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;" edge="1" parent="1" source="P" target="M">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;" edge="1" parent="1" source="U" target="M">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;" edge="1" parent="1" source="I" target="S">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;" edge="1" parent="1" source="V" target="I">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;" edge="1" parent="1" source="I" target="T">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;" edge="1" parent="1" source="I" target="J">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;" edge="1" parent="1" source="J" target="JD">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

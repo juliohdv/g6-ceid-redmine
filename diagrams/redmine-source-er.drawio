@@ -1,0 +1,92 @@
+<mxfile host="app.diagrams.net" agent="Cursor" version="24.0.0">
+  <diagram id="source-er" name="Esquema fuente MySQL">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Redmine - Esquema relacional fuente (MySQL)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="10" width="450" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="projects" value="projects&#xa;PK: id&#xa;parent_id, status, identifier" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="issues" value="issues&#xa;PK: id&#xa;project_id, status_id, priority_id&#xa;fixed_version_id, assigned_to_id&#xa;estimated_hours, done_ratio, closed_on" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="400" y="240" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="versions" value="versions&#xa;PK: id&#xa;project_id, effective_date, status" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="280" y="80" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="members" value="members&#xa;PK: id&#xa;user_id, project_id" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="220" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="users" value="users&#xa;PK: id&#xa;login, firstname, lastname, status" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="340" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="issue_statuses" value="issue_statuses&#xa;PK: id&#xa;name, is_closed" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="680" y="80" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="time_entries" value="time_entries&#xa;PK: id&#xa;issue_id, user_id, project_id&#xa;hours, spent_on" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="680" y="240" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="journals" value="journals&#xa;PK: id&#xa;journalized_id, journalized_type&#xa;user_id, created_on" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="400" y="420" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="journal_details" value="journal_details&#xa;PK: id&#xa;journal_id, prop_key&#xa;old_value, value" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="680" y="420" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="enumerations" value="enumerations&#xa;PK: id&#xa;type=IssuePriority&#xa;name, position" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="680" y="160" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="custom_fields" value="custom_fields&#xa;PK: id&#xa;name, type" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="custom_values" value="custom_values&#xa;PK: id&#xa;customized_id, custom_field_id&#xa;value (EAV)" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="400" y="540" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="projects" target="issues">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="projects" target="versions">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="projects" target="members">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="users" target="members">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="issue_statuses" target="issues">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" style="endArrow=ERzeroToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="versions" target="issues">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="issues" target="time_entries">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="issues" target="journals">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="journals" target="journal_details">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="enumerations" target="issues">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="issues" target="custom_values">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="custom_fields" target="custom_values">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="users" target="issues">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

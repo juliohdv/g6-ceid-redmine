@@ -1,0 +1,91 @@
+<mxfile host="app.diagrams.net" agent="Cursor" version="24.0.0">
+  <diagram id="star-schema" name="Star schema BI">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Redmine BI - Modelo dimensional (Star Schema)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="10" width="450" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="FactIssue" value="FactIssue" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="420" y="280" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="DimProject" value="DimProject" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="120" y="120" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="DimVersion" value="DimVersion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="280" y="120" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="DimIssueStatus" value="DimIssueStatus" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="440" y="120" width="130" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="DimTracker" value="DimTracker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="600" y="120" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="DimPriority" value="DimPriority" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="760" y="120" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="DimUser" value="DimUser" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="120" y="300" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="DimSeverity" value="DimSeverity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="120" y="200" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="DimDate" value="DimDate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="760" y="300" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="FactTimeEntry" value="FactTimeEntry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="380" y="480" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="FactIssueHistory" value="FactIssueHistory" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="560" y="480" width="150" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="FactBurndownDaily" value="FactBurndownDaily" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="200" y="480" width="160" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="DimSprint" value="DimSprint (opcional)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;dashed=1;dashPattern=8 8;fontStyle=2" vertex="1" parent="1">
+          <mxGeometry x="280" y="200" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="DimProject" target="FactIssue">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r2" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="DimVersion" target="FactIssue">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r3" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="DimIssueStatus" target="FactIssue">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r4" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="DimTracker" target="FactIssue">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r5" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="DimPriority" target="FactIssue">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r6" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="DimUser" target="FactIssue">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r7" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="DimSeverity" target="FactIssue">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r8" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="FactIssue" target="FactTimeEntry">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r9" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="FactIssue" target="FactIssueHistory">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r10" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="DimDate" target="FactIssue">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r11" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="DimDate" target="FactTimeEntry">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r12" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;" edge="1" parent="1" source="DimDate" target="FactBurndownDaily">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r13" style="endArrow=ERoneToMany;endFill=0;startArrow=ERmandOne;startFill=0;html=1;dashed=1;" edge="1" parent="1" source="DimVersion" target="FactBurndownDaily">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

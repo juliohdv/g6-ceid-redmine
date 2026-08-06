@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="7/25/2026 8:49:21 PM"
@@ -11,9 +11,609 @@
   DTS:LocaleID="2058"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionGUID="{FEA6673F-B73D-4DD4-81CA-DEBC04F73F72}">
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{F13D7D17-C194-4D37-B819-E09A554B9FA3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[JULIO-ROG_SQLEXPRESS.RedmineDW]"
+      DTS:CreationName="ADO.NET:Microsoft.Data.SqlClient.SqlConnection, Microsoft.Data.SqlClient, Version=5.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5"
+      DTS:DTSID="{B3CC19A7-BBC0-45AA-8DB8-F69B37EDEB15}"
+      DTS:ObjectName="JULIO-ROG_SQLEXPRESS.RedmineDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=JULIO-ROG\SQLEXPRESS;Initial Catalog=RedmineDW;Integrated Security=True;Encrypt=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.redmine_db.admin]"
+      DTS:CreationName="ADO.NET:MySql.Data.MySqlClient.MySqlConnection, MySql.Data, Version=26.7.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d"
+      DTS:DTSID="{756A2C93-A1A6-4149-BF43-CB9548DEBE3D}"
+      DTS:ObjectName="localhost.redmine_db.admin">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="server=localhost;user id=admin;database=redmine_db;">
+          <DTS:Password
+            DTS:Name="password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAL27tT7enPU2p1v7YPhhm4QAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAB6kM/jY26DgL18MpPIYYyFcCI+WgamuwjiDSxEYAa2mAAAAAAOgAAAAAIAACAAAACiaIZSnywraObcHohycKNCdTORzRMj0FNXLtURNE3qNBAAAAADJ+bP7OmapRm4NRtxW2hWQAAAAJIJgzxldRjrmkvHhoAAedFyViJaPJzltVfBzEW2dfepr6A1B+AjU8kHsm/aDkrpBvYFBjAHPxetdkkBL8r1Mxk</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
   <DTS:Variables />
-  <DTS:Executables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{02AE9268-1888-4D7A-8034-BF51AEC6B237}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from issues</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.redmine_db.admin]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.redmine_db.admin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[id]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[tracker_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[tracker_id]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[tracker_id]"
+                      name="tracker_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[project_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[project_id]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[project_id]"
+                      name="project_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[subject]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[subject]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[subject]"
+                      name="subject"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[description]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[description]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[description]"
+                      name="description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[due_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[due_date]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[due_date]"
+                      name="due_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[category_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[category_id]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[category_id]"
+                      name="category_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[status_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[status_id]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[status_id]"
+                      name="status_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[assigned_to_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[assigned_to_id]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[assigned_to_id]"
+                      name="assigned_to_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[priority_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[priority_id]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[priority_id]"
+                      name="priority_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[fixed_version_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[fixed_version_id]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[fixed_version_id]"
+                      name="fixed_version_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[author_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[author_id]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[author_id]"
+                      name="author_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[lock_version]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[lock_version]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[lock_version]"
+                      name="lock_version"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[created_on]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[created_on]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[created_on]"
+                      name="created_on"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[updated_on]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[updated_on]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[updated_on]"
+                      name="updated_on"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[start_date]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[start_date]"
+                      name="start_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[done_ratio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[done_ratio]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[done_ratio]"
+                      name="done_ratio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[estimated_hours]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[estimated_hours]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[estimated_hours]"
+                      name="estimated_hours"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[parent_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[parent_id]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[parent_id]"
+                      name="parent_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[root_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[root_id]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[root_id]"
+                      name="root_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[lft]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[lft]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[lft]"
+                      name="lft"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[rgt]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[rgt]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[rgt]"
+                      name="rgt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[is_private]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[is_private]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[is_private]"
+                      name="is_private"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[closed_on]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[closed_on]"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[closed_on]"
+                      name="closed_on"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[tracker_id]"
+                      dataType="i4"
+                      name="tracker_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[project_id]"
+                      dataType="i4"
+                      name="project_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[subject]"
+                      dataType="wstr"
+                      length="255"
+                      name="subject" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[description]"
+                      dataType="nText"
+                      name="description" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[due_date]"
+                      dataType="dbTimeStamp"
+                      name="due_date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[category_id]"
+                      dataType="i4"
+                      name="category_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[status_id]"
+                      dataType="i4"
+                      name="status_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[assigned_to_id]"
+                      dataType="i4"
+                      name="assigned_to_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[priority_id]"
+                      dataType="i4"
+                      name="priority_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[fixed_version_id]"
+                      dataType="i4"
+                      name="fixed_version_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[author_id]"
+                      dataType="i4"
+                      name="author_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[lock_version]"
+                      dataType="i4"
+                      name="lock_version" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[created_on]"
+                      dataType="dbTimeStamp"
+                      name="created_on" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[updated_on]"
+                      dataType="dbTimeStamp"
+                      name="updated_on" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[start_date]"
+                      dataType="dbTimeStamp"
+                      name="start_date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[done_ratio]"
+                      dataType="i4"
+                      name="done_ratio" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[estimated_hours]"
+                      dataType="r4"
+                      name="estimated_hours" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[parent_id]"
+                      dataType="i4"
+                      name="parent_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[root_id]"
+                      dataType="i4"
+                      name="root_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[lft]"
+                      dataType="i4"
+                      name="lft" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[rgt]"
+                      dataType="i4"
+                      name="rgt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[is_private]"
+                      dataType="bool"
+                      name="is_private" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[closed_on]"
+                      dataType="dbTimeStamp"
+                      name="closed_on" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[tracker_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[tracker_id]"
+                      name="tracker_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[project_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[project_id]"
+                      name="project_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[subject]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[subject]"
+                      name="subject" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[description]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[description]"
+                      name="description" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[due_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[due_date]"
+                      name="due_date" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[category_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[category_id]"
+                      name="category_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[status_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[status_id]"
+                      name="status_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[assigned_to_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[assigned_to_id]"
+                      name="assigned_to_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[priority_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[priority_id]"
+                      name="priority_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[fixed_version_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[fixed_version_id]"
+                      name="fixed_version_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[author_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[author_id]"
+                      name="author_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[lock_version]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[lock_version]"
+                      name="lock_version" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[created_on]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[created_on]"
+                      name="created_on" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[updated_on]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[updated_on]"
+                      name="updated_on" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[start_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[start_date]"
+                      name="start_date" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[done_ratio]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[done_ratio]"
+                      name="done_ratio" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[estimated_hours]"
+                      dataType="r4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[estimated_hours]"
+                      name="estimated_hours" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[parent_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[parent_id]"
+                      name="parent_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[root_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[root_id]"
+                      name="root_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[lft]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[lft]"
+                      name="lft" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[rgt]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[rgt]"
+                      name="rgt" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[is_private]"
+                      dataType="bool"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[is_private]"
+                      name="is_private" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[closed_on]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[closed_on]"
+                      name="closed_on" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Data Flow Task"
+          TopLeft="322,133" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Data Flow Task\Origen de ADO NET"
+          TopLeft="266,78" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
